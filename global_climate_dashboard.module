@@ -21,19 +21,20 @@ function global_climate_dashboard_block_info() {
 /*
  * Implements hook_block_configure().
  */
-function global_climate_dashboard_block_configure($delta) {
+/* block config for flash object
+function global_climate_dashboard_flash_block_configure($delta) {
   $form = array();
   switch ($delta) {
   case 'global_climate_dashboard':
-    /* Variables needed
-       $width
-       $height
-       $swf_path
-       $config_path
-       Set variables: variable_set($name, $value)
-       Get variables: variable_get($name, $default = NULL)
-       Set default (in block config form): '#default_value' => variable_get($name, $default = NULL),
-    */
+    // Variables needed
+    //   $width
+    //   $height
+    //   $swf_path
+    //   $config_path
+    //   Set variables: variable_set($name, $value)
+    //   Get variables: variable_get($name, $default = NULL)
+    //   Set default (in block config form): '#default_value' => variable_get($name, $default = NULL),
+    
     $form['width'] = array(
 			   '#type' => 'textfield',
 			   '#title' => 'Dashboard Width',
@@ -64,7 +65,49 @@ function global_climate_dashboard_block_configure($delta) {
     break;
   }
   return $form;
+} */	
+
+/*
+ * Implements hook_block_configure().
+ */
+function global_climate_dashboard_block_configure($delta) {
+  $form = array();
+  switch ($delta) {
+  case 'global_climate_dashboard':
+    /* Variables needed
+      $h5_config_path
+       Set variables: variable_set($name, $value)
+       Get variables: variable_get($name, $default = NULL)
+       Set default (in block config form): '#default_value' => variable_get($name, $default = NULL),
+    */
+
+    $form['h5_config_path'] = array(
+				 '#type' => 'textfield',
+				 '#title' => 'Dashboard Config Path',
+				 '#description' => 'The path to the dashboard config directory',
+				 '#default_value' => variable_get('global_climate_dashboard_h5_config_path'),
+				 );
+    break;
+  }
+  return $form;
 }	
+
+/*
+ * Implements hook_block_save().
+ */
+/* block save for flash object version
+function global_climate_dashboard_flash_block_save($delta ='', $edit = array()) {
+  switch ($delta) {
+  case 'global_climate_dashboard':
+    // Setting the dashboard variables from form values
+    variable_set('global_climate_dashboard_width', $edit['width']);
+    variable_set('global_climate_dashboard_height', $edit['height']);
+    variable_set('global_climate_dashboard_swf_path', $edit['swf_path']);
+    variable_set('global_climate_dashboard_config_path', $edit['config_path']);
+    break;
+  }	
+} */
+
 
 /*
  * Implements hook_block_save().
@@ -73,10 +116,7 @@ function global_climate_dashboard_block_save($delta ='', $edit = array()) {
   switch ($delta) {
   case 'global_climate_dashboard':
     // Setting the dashboard variables from form values
-    variable_set('global_climate_dashboard_width', $edit['width']);
-    variable_set('global_climate_dashboard_height', $edit['height']);
-    variable_set('global_climate_dashboard_swf_path', $edit['swf_path']);
-    variable_set('global_climate_dashboard_config_path', $edit['config_path']);
+    variable_set('global_climate_dashboard_h5_config_path', $edit['h5_config_path']);
     break;
   }	
 }
@@ -94,9 +134,9 @@ function global_climate_dashboard_block_view($delta = '') {
 }
 
 /*
- * Custom function to render the 'mugl' field.
+ * Custom function to render the dashboard.
  */
-function global_climate_dashboard_contents($delta) {
+function global_climate_dashboard_flash_contents($delta) {
   switch($delta) {
   case 'global_climate_dashboard':
     // Initializing config variables
@@ -148,4 +188,47 @@ EOF
 
     break;
   }
+
+}
+
+/*
+ * Custom function to render the dashboard.
+ */
+function global_climate_dashboard_contents($delta) {
+  switch($delta) {
+  case 'global_climate_dashboard':
+	// Initializing path variable for source files
+  $h5_config_path = variable_get('global_climate_dashboard_h5_config_path');
+    // Returning the object to be rendered inside block
+    return array('#markup' => <<<EOF
+<div id="dashboard">
+
+<script type="text/javascript" src="$h5_config_path/lib/mustache.js"></script>
+<script type="text/javascript" src="$h5_config_path/lib/multigraph/build/multigraph-min.js"></script>
+<script type="text/javascript">$ = jQuery = window.multigraph.jQuery;</script>
+<script type="text/javascript" src="$h5_config_path/lib/jquery-ui-1.9.0.custom/js/jquery-ui-1.9.0.custom.min.js"></script>
+<script type="text/javascript" src="$h5_config_path/lib/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js"></script>
+<script type="text/javascript" src="$h5_config_path/expandable-dashboard-graph.js"></script>
+<script type="text/javascript" src="$h5_config_path/single-dashboard-graph.js"></script>
+<script type="text/javascript" src="$h5_config_path/dashboard.js"></script>
+
+<link rel="stylesheet" href="$h5_config_path/lib/jquery-ui-1.9.0.custom/css/smoothness/jquery-ui-1.9.0.custom.css"></link>
+<link rel="stylesheet" href="$h5_config_path/expandable-dashboard-graph.css"></link>
+<link rel="stylesheet" href="$h5_config_path/single-dashboard-graph.css"></link>
+<link rel="stylesheet" href="$h5_config_path/dashboard.css"></link>
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#dashboard').dashboard({
+      id : 'global-climate-dashboard',
+      title : 'Global Climate Dashboard',
+      config : '$h5_config_path/config/dashboard.xml'
+    });
+});
+</script>
+EOF
+		 );
+
+    break;
+  }
+
 }

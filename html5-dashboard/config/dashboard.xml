@@ -1,0 +1,274 @@
+<dashboard>
+
+
+  <tab id="climateChange"  selected="true">
+    <title>Climate Change</title>
+    <graph id="temp" expanded="true">
+      <title><![CDATA[Temperature (&#730;C)]]></title>
+      <mugl url="/jmarchesmg/sites/all/modules/global_climate_dashboard/html5-dashboard/config/temp.xml"/>
+      <stats color="#f8a792">
+        <stat>
+          <title>Increase since 1990</title>
+          <value>+1.5&#730; F (0.7 C)</value>
+        </stat>
+        <stat>
+          <title>Average rate of rise</title>
+          <value>+0.25&#730;F (0.13&#730; C) per decade</value>
+        </stat>
+      </stats>
+      <link href="#"/>
+    </graph>
+
+    <graph id="co2" expanded="true">
+      <title><![CDATA[Carbon Dioxide (ppm)]]></title>
+      <mugl url="/jmarchesmg/sites/all/modules/global_climate_dashboard/html5-dashboard/config/co2.xml"/>
+      <stats color="#f8a792">
+        <stat>
+          <title>Change since sometime</title>
+          <value>3.4%</value>
+        </stat>
+        <stat>
+          <title>Average change in last second</title>
+          <value>29%</value>
+        </stat>
+      </stats>
+      <link href="#"/>
+    </graph>
+    <graph id="ocean" expanded="true">
+      <title><![CDATA[Ocean Heat]]></title>
+      <mugl url="/jmarchesmg/sites/all/modules/global_climate_dashboard/html5-dashboard/config/ocean.xml"/>
+      <stats color="#f8a792">
+        <stat>
+          <title>Change since sometime</title>
+          <value>3.4%</value>
+        </stat>
+        <stat>
+          <title>Average change in last second</title>
+          <value>29%</value>
+        </stat>
+      </stats>
+      <link href="#"/>
+    </graph>
+    <graph id="ghouse" expanded="false">
+      <title><![CDATA[Annual Greenhouse Gas Index]]></title>
+      <mugl url="/jmarchesmg/sites/all/modules/global_climate_dashboard/html5-dashboard/config/ghouse.xml"/>
+      <stats color="#f8a792">
+        <stat>
+          <title>Increase in heat-trapping since 1990</title>
+          <value>+29%</value>
+        </stat>
+        <stat>
+          <title>% of AGGI from carbon dioxide alone</title>
+          <value>85%</value>
+        </stat>
+      </stats>
+      <link href="#"/>
+    </graph>
+    <graph id="glacier" expanded="false">
+      <title><![CDATA[Glaciers (meters of water equivalent)]]></title>
+      <mugl url="/jmarchesmg/sites/all/modules/global_climate_dashboard/html5-dashboard/config/glacier.xml"/>
+      <stats color="#87b5d2">
+        <stat>
+          <title>Melt water lost since 1980</title>
+          <value>40 feet (12.5m)</value>
+        </stat>
+        <stat>
+          <title>Average rate of water loss</title>
+          <value>26 in. (0.5m) per year</value>
+        </stat>
+      </stats>
+      <link href="#"/>
+    </graph>
+    <graph id="sea" expanded="false">
+      <title><![CDATA[Sea Level (mm)]]></title>
+      <mugl url="/jmarchesmg/sites/all/modules/global_climate_dashboard/html5-dashboard/config/sea.xml"/>
+      <stats color="#f8a792">
+        <stat>
+          <title>Change since sometime</title>
+          <value>3.4%</value>
+        </stat>
+        <stat>
+          <title>Average change in last second</title>
+          <value>29%</value>
+        </stat>
+      </stats>
+      <link href="#"/>
+    </graph>
+    <graph id="snow" expanded="false">
+      <title><![CDATA[Snow (million km<sup>2</sup>)]]></title>
+      <mugl url="/jmarchesmg/sites/all/modules/global_climate_dashboard/html5-dashboard/config/snow.xml"/>
+      <stats color="#f8a792">
+        <stat>
+          <title>Change since sometime</title>
+          <value>3.4%</value>
+        </stat>
+        <stat>
+          <title>Average change in last second</title>
+          <value>29%</value>
+        </stat>
+      </stats>
+      <link href="#"/>
+    </graph>
+    <graph id="sun" expanded="false">
+      <title><![CDATA[Sun's Energy (W/m<sup>2</sup>)]]></title>
+      <mugl url="/jmarchesmg/sites/all/modules/global_climate_dashboard/html5-dashboard/config/sun.xml"/>
+      <stats color="#f8a792">
+        <stat>
+          <title>Change since sometime</title>
+          <value>3.4%</value>
+        </stat>
+        <stat>
+          <title>Average change in last second</title>
+          <value>29%</value>
+        </stat>
+      </stats>
+      <link href="#"/>
+    </graph>
+    <graph id="asi" expanded="false">
+      <title><![CDATA[Arctic Sea Ice (1000 km<sup>2</sup>)]]></title>
+      <mugl url="/jmarchesmg/sites/all/modules/global_climate_dashboard/html5-dashboard/config/asi.xml"/>
+      <stats color="#f8a792">
+        <stat>
+          <title>Change since sometime</title>
+          <value>3.4%</value>
+        </stat>
+        <stat>
+          <title>Average change in last second</title>
+          <value>29%</value>
+        </stat>
+      </stats>
+      <link href="#"/>
+    </graph>
+
+  </tab>
+
+  <tab id="climateVariability">
+    <title><![CDATA[Climate Variability]]></title>
+    <graph id="oni" expanded="true">
+      <title><![CDATA[El Niño / La Niña Index]]></title>
+      <mugl url="/jmarchesmg/sites/all/modules/global_climate_dashboard/html5-dashboard/config/oni.xml"/>
+      <stats color="#f8a792">
+        <stat>
+          <title>Change since sometime</title>
+          <value>3.4%</value>
+        </stat>
+        <stat>
+          <title>Average change in last second</title>
+          <value>29%</value>
+        </stat>
+      </stats>
+      <link href="#"/>
+    </graph>
+    <graph id="pnap" expanded="true">
+      <title><![CDATA[Pacific North American Pattern]]></title>
+      <mugl url="/jmarchesmg/sites/all/modules/global_climate_dashboard/html5-dashboard/config/pnap.xml"/>
+      <stats color="#f8a792">
+        <stat>
+          <title>Change since sometime</title>
+          <value>3.4%</value>
+        </stat>
+        <stat>
+          <title>Average change in last second</title>
+          <value>29%</value>
+        </stat>
+      </stats>
+      <link href="#"/>
+    </graph>
+    <graph id="soi" expanded="true">
+      <title><![CDATA[Southern Oscillation Index]]></title>
+      <mugl url="/jmarchesmg/sites/all/modules/global_climate_dashboard/html5-dashboard/config/soi.xml"/>
+      <stats color="#f8a792">
+        <stat>
+          <title>Change since sometime</title>
+          <value>3.4%</value>
+        </stat>
+        <stat>
+          <title>Average change in last second</title>
+          <value>29%</value>
+        </stat>
+      </stats>
+      <link href="#"/>
+    </graph>
+    <graph id="naoi" expanded="false">
+      <title><![CDATA[North Atlantic Oscillation]]></title>
+      <mugl url="/jmarchesmg/sites/all/modules/global_climate_dashboard/html5-dashboard/config/naoi.xml"/>
+      <stats color="#f8a792">
+        <stat>
+          <title>Change since sometime</title>
+          <value>3.4%</value>
+        </stat>
+        <stat>
+          <title>Average change in last second</title>
+          <value>29%</value>
+        </stat>
+      </stats>
+      <link href="#"/>
+    </graph>
+    <graph id="aoi" expanded="false">
+      <title><![CDATA[Arctic Oscillation Index]]></title>
+      <mugl url="/jmarchesmg/sites/all/modules/global_climate_dashboard/html5-dashboard/config/aoi.xml"/>
+      <stats color="#f8a792">
+        <stat>
+          <title>Change since sometime</title>
+          <value>3.4%</value>
+        </stat>
+        <stat>
+          <title>Average change in last second</title>
+          <value>29%</value>
+        </stat>
+      </stats>
+      <link href="#"/>
+    </graph>
+  </tab>
+
+ <tab id="climateProjections">
+    <title>Climate Projections</title>
+    <graph id="cp">
+      <title>Climate Model Data (CMIP3, 2007)</title>
+      <legendtitle>Simulation of Global Temperature</legendtitle>
+      <legendtext>The black line shows the average of many different
+simulations of global temperature in the 20th century compared to
+average from 1971-1999, and the colored lines show projected
+temperature changes in the 21st century for three possible
+scenarios.</legendtext>
+<help>
+Results from this set of climate model experiments suggest that our
+planet’s average temperature could be between 2 and 9.7°F (1.1 to
+5.4°C) warmer in 2100 than it is today.
+<br/><br/>
+The graph shows the average of temperature simulations for the 20th
+century (black line), followed by projected temperatures for the 21st
+century based on a range of emissions scenarios (colored lines).  The
+shaded areas around each line indicate the statistical spread (one
+standard deviation) provided by individual model runs.
+<br/><br/>
+Zero on the Y-axis represents Earth’s average temperature for the
+period 1971-1999.  For 2000-2100, the model projections differ mainly
+in their assumptions about the number of people on the planet and the
+way they use energy, and therefore, the amount of heat-trapping gas in
+the atmosphere.
+</help>
+      <link>http://www.climatewatch.noaa.gov/article/2012/global-temperature-projections</link>
+      <mugl url="/jmarchesmg/sites/all/modules/global_climate_dashboard/html5-dashboard/config/projections.xml" />
+    </graph>
+    <legend>
+      <item>
+        <img src="./assets/ProjectionGraphLegendIcons-Red-width2.png"/>
+        <text>High Growth (A2)</text>
+      </item>
+      <item>
+        <img src="./assets/ProjectionGraphLegendIcons-Green-width2.png"/>
+        <text>Moderate Growth (A1B)</text>
+      </item>
+      <item>
+        <img src="./assets/ProjectionGraphLegendIcons-Blue-width2.png"/>
+        <text>Low Growth (B1)</text>
+      </item>
+      <item>
+        <img src="./assets/ProjectionGraphLegendIcons-Black-width2.png"/>
+        <text>20th Century Climate</text>
+      </item>
+    </legend>
+  </tab>
+
+</dashboard>
