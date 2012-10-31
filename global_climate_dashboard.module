@@ -75,16 +75,23 @@ function global_climate_dashboard_block_configure($delta) {
   switch ($delta) {
   case 'global_climate_dashboard':
     /* Variables needed
+			$hg_app_path
       $h5_config_path
        Set variables: variable_set($name, $value)
        Get variables: variable_get($name, $default = NULL)
        Set default (in block config form): '#default_value' => variable_get($name, $default = NULL),
     */
+    $form['h5_app_path'] = array(
+				 '#type' => 'textfield',
+				 '#title' => 'Dashboard Application Path',
+				 '#description' => 'The path to the dashboard application directory',
+				 '#default_value' => variable_get('global_climate_dashboard_h5_app_path'),
+				 );
 
     $form['h5_config_path'] = array(
 				 '#type' => 'textfield',
 				 '#title' => 'Dashboard Config Path',
-				 '#description' => 'The path to the dashboard config directory',
+				 '#description' => 'The path to the dashboard config file',
 				 '#default_value' => variable_get('global_climate_dashboard_h5_config_path'),
 				 );
     break;
@@ -116,6 +123,7 @@ function global_climate_dashboard_block_save($delta ='', $edit = array()) {
   switch ($delta) {
   case 'global_climate_dashboard':
     // Setting the dashboard variables from form values
+    variable_set('global_climate_dashboard_h5_app_path', $edit['h5_app_path']);
     variable_set('global_climate_dashboard_h5_config_path', $edit['h5_config_path']);
     break;
   }	
@@ -197,31 +205,37 @@ EOF
 function global_climate_dashboard_contents($delta) {
   switch($delta) {
   case 'global_climate_dashboard':
-	// Initializing path variable for source files
+	// Initializing path variables for source files
+	$base_path = base_path();
+	if(!preg_match($base_path, variable_get('global_climate_dashboard_h5_app_path'		))) {
+	$h5_app_path = base_path() . variable_get('global_climate_dashboard_h5_app_path');
+	} else {
+	$h5_app_path = variable_get('global_climate_dashboard_h5_app_path');
+	}
   $h5_config_path = variable_get('global_climate_dashboard_h5_config_path');
     // Returning the object to be rendered inside block
     return array('#markup' => <<<EOF
 <div id="dashboard">
 
-<script type="text/javascript" src="$h5_config_path/lib/mustache.js"></script>
-<script type="text/javascript" src="$h5_config_path/lib/multigraph/build/multigraph-min.js"></script>
+<script type="text/javascript" src="$h5_app_path/lib/mustache.js"></script>
+<script type="text/javascript" src="$h5_app_path/lib/multigraph/build/multigraph-min.js"></script>
 <script type="text/javascript">$ = jQuery = window.multigraph.jQuery;</script>
-<script type="text/javascript" src="$h5_config_path/lib/jquery-ui-1.9.0.custom/js/jquery-ui-1.9.0.custom.min.js"></script>
-<script type="text/javascript" src="$h5_config_path/lib/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js"></script>
-<script type="text/javascript" src="$h5_config_path/expandable-dashboard-graph.js"></script>
-<script type="text/javascript" src="$h5_config_path/single-dashboard-graph.js"></script>
-<script type="text/javascript" src="$h5_config_path/dashboard.js"></script>
+<script type="text/javascript" src="$h5_app_path/lib/jquery-ui-1.9.0.custom/js/jquery-ui-1.9.0.custom.min.js"></script>
+<script type="text/javascript" src="$h5_app_path/lib/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js"></script>
+<script type="text/javascript" src="$h5_app_path/expandable-dashboard-graph.js"></script>
+<script type="text/javascript" src="$h5_app_path/single-dashboard-graph.js"></script>
+<script type="text/javascript" src="$h5_app_path/dashboard.js"></script>
 
-<link rel="stylesheet" href="$h5_config_path/lib/jquery-ui-1.9.0.custom/css/smoothness/jquery-ui-1.9.0.custom.css"></link>
-<link rel="stylesheet" href="$h5_config_path/expandable-dashboard-graph.css"></link>
-<link rel="stylesheet" href="$h5_config_path/single-dashboard-graph.css"></link>
-<link rel="stylesheet" href="$h5_config_path/dashboard.css"></link>
+<link rel="stylesheet" href="$h5_app_path/lib/jquery-ui-1.9.0.custom/css/smoothness/jquery-ui-1.9.0.custom.css"></link>
+<link rel="stylesheet" href="$h5_app_path/expandable-dashboard-graph.css"></link>
+<link rel="stylesheet" href="$h5_app_path/single-dashboard-graph.css"></link>
+<link rel="stylesheet" href="$h5_app_path/dashboard.css"></link>
 <script type="text/javascript">
 $(document).ready(function() {
     $('#dashboard').dashboard({
       id : 'global-climate-dashboard',
       title : 'Global Climate Dashboard',
-      config : '$h5_config_path/config/dashboard.xml'
+      config : '$h5_app_path$h5_config_path'
     });
 });
 </script>
@@ -232,3 +246,7 @@ EOF
   }
 
 }
+
+// change $h5_config_path to $app_path and add a $xml_config_path for
+//		config : '$h5_config_path/config/dashboard.xml'
+// new one: drupal-module-global-climate-dashboard

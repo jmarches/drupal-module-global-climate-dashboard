@@ -8,8 +8,10 @@ function global_climate_dashboard_install() {
   variable_set('global_climate_dashboard_height',      "700");
   variable_set('global_climate_dashboard_swf_path',    drupal_get_path('module', 'global_climate_dashboard') . "/Dashboard.swf");
   variable_set('global_climate_dashboard_config_path', "http://dashboard.nemac.org/proxy/flat-dashboard.xml");
-	$path = base_path() . drupal_get_path('module', 'global_climate_dashboard') . '/html5-dashboard';
-	variable_set('global_climate_dashboard_h5_config_path', $path);
+	$app_path = drupal_get_path('module', 'global_climate_dashboard') . '/html5-dashboard';
+	variable_set('global_climate_dashboard_h5_app_path', $app_path);
+	$config_path = '/config/dashboard.xml';	
+	variable_set('global_climate_dashboard_h5_config_path', $config_path);
 }
 
 /*
@@ -20,5 +22,6 @@ function global_climate_dashboard_uninstall() {
   variable_del('global_climate_dashboard_height');
   variable_del('global_climate_dashboard_swf_path');
   variable_del('global_climate_dashboard_config_path');
+	variable_del('global_climate_dashboard_h5_app_path');
 	variable_del('global_climate_dashboard_h5_config_path');
 }
